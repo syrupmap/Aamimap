@@ -1,5 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 40px;
+
+    padding: 20px;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: "Jua", sans-serif;
+    font-size: 36px;
+    color: #F1A4A4;
+    -webkit-text-stroke: 2px white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 50px;
+}
+
+.nav-links a {
+    font-family: "Jua", sans-serif;
+    color: #F1A4A4;
+    text-decoration: none;
+    font-size: 28px;
+}
+
+.menu-button {
+    display: none;
+
+    background: none;
+    border: none;
+
+    font-size: 36px;
+    color: white;
+
+    cursor: pointer;
+}
+
+.navbar a {
+    font-family: "Jua", sans-serif;
+
+    font-size: 30px;
+    font-weight: 400;
+
+    color: white;
+    text-decoration: none;
+
+    transition: transform 0.2s ease;
+}
+
+.navbar a:hover {
+    transform: scale(1.1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 .home-page{
     background: #87CA86;
@@ -7,18 +74,28 @@
     min-height: 100vh;
 }
 
-.hero{
+.hero {
     position: relative;
-    height: 100vh;
+    height: auto; 
     overflow: hidden;
 }
 
-.layer{
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
+/* Base layer determines the natural height of .hero */
+.layer-base {
+    position: relative;
+    width: 100%;
     height: auto;
+    display: block;
+}
+
+/* Additional overlay layers remain absolutely positioned on top */
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .gallery-title {
@@ -27,17 +104,32 @@
     color: #F1A4A4;
     text-align: center;
 
-    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: white;
 
-    font-size: 96px;
+    font-size: 70px;
     font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 10;
+    }
+
+    .gallery-title {
+        font-size: clamp(24px, 8vw, 56px);
+        -webkit-text-stroke-width: 2px;
+    }
+
+    .gallery-section {
+        padding: 64px 20px;
+    }
 }
 
 .gallery-grid {
     display: grid;
 
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
 
     gap: 32px;
 
@@ -52,8 +144,8 @@
 
     object-fit: cover;
 
-    border-radius: 26px;
-    border: 8px solid white;
+    border-radius: 20px;
+    border: 5px solid white;
 
     cursor: pointer;
 
@@ -78,4 +170,35 @@
 
 .gallery-section {
     padding: 120px 40px;
+}
+
+@media (max-width: 1468px) {
+    .menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+        top: 80px;
+        right: 20px;
+
+        flex-direction: column;
+
+        padding: 20px;
+
+        background: rgba(135, 202, 134, 0.95);
+        backdrop-filter: blur(10px);
+
+        border-radius: 20px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        font-size: 24px;
+    }
 }
